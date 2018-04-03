@@ -1,6 +1,6 @@
-#define inputPin 13
+#include <ESP8266WiFi.h>
 
-const char* ssid = "umakant";                     //"YourNetworkSSID"
+const char* ssid = "IoT DL5";                     //"YourNetworkSSID"
 const char* password = "password";                //"YourPassword"
 const char* host = "api.thingspeak.com";    
 const char* writeAPIKey = "1TD5876D93IST4HI";     //"YourWriteAPI"
@@ -8,10 +8,10 @@ const char* writeAPIKey = "1TD5876D93IST4HI";     //"YourWriteAPI"
 int value=0;
 
 void setup() {
-  pinMode(inputPin,INPUT);
+  pinMode(A0,INPUT);
   Serial.begin(9600);
   delay(1000);
-
+  //  Connect to WiFi network
   Serial.print("Connecting to ssid=");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
@@ -25,7 +25,7 @@ void setup() {
 
 void loop()
 {
-  value=digitalRead(inputPin);
+  value=analogRead(A0);
   Serial.print("Value = ");
   Serial.println(value,DEC);
  
